@@ -1,0 +1,2 @@
+/* eslint import/no-anonymous-default-export: [2, {"allowArray": true}] */
+export default ["Białystok", "Bydgoszcz", "Gdańsk", "Gorzów Wielkopolski", "Katowice", "Kielce", "Kraków", "Lublin", "Łódź","Olsztyn", "Opole", "Poznań", "Rzeszów", "Szczecin", "Toruń", "Warszawa", "Wrocław","Zielona Góra"]

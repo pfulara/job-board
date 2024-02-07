@@ -5,10 +5,10 @@ const Input = React.forwardRef(function Input(
   ref
 ) {
   return (
-    <label className='mb-4 block'>
+    <label className='mb-4 block font-bold text-sm text-text-dark'>
       {label}
       <input
-        className={`py-2 px-4 block w-full border ${
+        className={`py-2 px-4 block w-full border font-normal ${
           error ? 'border-error' : 'border-primary-light'
         } rounded-xl ${
           error
@@ -21,7 +21,7 @@ const Input = React.forwardRef(function Input(
         onBlur={onBlur}
       />
       {error?.message && (
-        <span className='text-error block'>
+        <span className='text-error block font-normal'>
           {error.message}
         </span>
       )}

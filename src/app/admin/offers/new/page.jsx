@@ -3,12 +3,18 @@ import { useForm } from 'react-hook-form';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import Select from '@/components/Select';
+import MultiSelect from '@/components/MultiSelect';
+
+import categories from '@/utils/categories';
+import locations from '@/utils/locations';
 
 export default function NewOffer() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
@@ -27,15 +33,17 @@ export default function NewOffer() {
             },
           })}
         />
-        <Input
-          label='Last name'
-          error={errors.lastName}
-          {...register('lastName', {
+        <Select
+          label='Category'
+          items={categories}
+          {...register('category')}
+        />
+        <MultiSelect
+          label='Location'
+          items={locations}
+          setValue={setValue}
+          {...register('location', {
             required: 'This field is required',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: "This field doesn't match",
-            },
           })}
         />
         <Button label='Save' />
