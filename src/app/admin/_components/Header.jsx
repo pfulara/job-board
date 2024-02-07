@@ -1,15 +1,20 @@
-import Logo from '@/components/Logo';
 import Link from 'next/link';
+
+import Logo from '@/components/Logo';
+import Button from '@/components/Button';
 
 export default function Header() {
   return (
     <header className='h-16 flex px-4 border-b border-primary bg-primary-dark'>
       <div>
-        <Link href='/'>
+        <Link href='/admin'>
           <Logo color='text-light' />
         </Link>
       </div>
-      <div className='w-full flex justify-end items-center'>
+      <div className='w-full flex justify-end items-center gap-4'>
+        <Link href='/admin/offers/new'>
+          <Button label='Post an offer' color='secondary' />
+        </Link>
         Avatar
       </div>
     </header>

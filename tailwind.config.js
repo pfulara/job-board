@@ -18,10 +18,27 @@ module.exports = {
         'dark': '#e5e7eb'
       },
       'text': {
-        'light': '#e2e8f0',
+        'light': '#f1f5f9',
+        DEFAULT: '#cbd5e1',
         'dark': '#0f172a'
+      },
+      'error': {
+        'light': '#fca5a5',
+        DEFAULT: '#dc2626',
+        'dark': '#7f1d1d'
+      },
+      'success': {
+        'light': '#86efac',
+        DEFAULT: '#16a34a',
+        'dark': '#064e3b'
       }
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(bg|text|border)-(primary|secondary|text|success|error)+(-(light|dark))?/,
+      variants: ['hover']
+    },
+  ]
 };
