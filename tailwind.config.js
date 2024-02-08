@@ -6,6 +6,12 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    extend: {
+      boxShadow: {
+        'select': '0 0 0 1px #e879f9',
+        'select-error': '0 0 0 1px #dc2626'
+      }
+    },
     colors: {
       'primary': {
         'light': '#e879f9',

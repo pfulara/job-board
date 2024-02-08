@@ -8,6 +8,7 @@ import MultiSelect from '@/components/MultiSelect';
 
 import categories from '@/utils/categories';
 import locations from '@/utils/locations';
+import Textarea from '@/components/Textarea';
 
 export default function NewOffer() {
   const {
@@ -15,6 +16,8 @@ export default function NewOffer() {
     handleSubmit,
     formState: { errors },
     setValue,
+    clearErrors,
+    getValues,
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
@@ -39,12 +42,38 @@ export default function NewOffer() {
           {...register('category')}
         />
         <MultiSelect
-          label='Location'
-          items={locations}
+          label='Locations'
+          items={locations?.map((item) => ({
+            value: item,
+            label: item,
+          }))}
           setValue={setValue}
-          {...register('location', {
+          clearErrors={clearErrors}
+          error={errors.locations}
+          {...register('locations', {
             required: 'This field is required',
           })}
+        />
+        <MultiSelect
+          label='Skills'
+          setValue={setValue}
+          clearErrors={clearErrors}
+          error={errors.skills}
+          {...register('skills', {
+            required: 'This field is required',
+          })}
+        />
+        <Input label='Salary' {...register('salary')} />
+        <Textarea
+          label='Description'
+          value={getValues('description')}
+          setValue={setValue}
+          clearErrors={clearErrors}
+          error={errors.description}
+          {...register('description', {
+            required: 'This field is required',
+          })}
+          ref={null}
         />
         <Button label='Save' />
       </form>

@@ -8,12 +8,12 @@ const Input = React.forwardRef(function Input(
     <label className='mb-4 block font-bold text-sm text-text-dark'>
       {label}
       <input
-        className={`py-2 px-4 block w-full border font-normal ${
+        className={`py-2 px-4 block w-full border font-normal rounded-xl outline-none ${
           error ? 'border-error' : 'border-primary-light'
-        } rounded-xl ${
+        } ${
           error
-            ? 'focus-visible:outline-error'
-            : 'focus-visible:outline-primary'
+            ? 'focus-visible:shadow-select-error'
+            : 'focus-visible:shadow-select'
         }`}
         name={name}
         ref={ref}

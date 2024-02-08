@@ -7,3 +7,23 @@ select {
     -webkit-appearance:none; /* Safari and Chrome */
     appearance:none;
 }
+
+.ck.ck-content {
+    border-bottom: 1px solid #e879f9!important;
+    border-left: 1px solid #e879f9!important;
+    border-right: 1px solid #e879f9!important;
+    border-radius: 0 0 0.75rem 0.75rem!important;
+    min-height: 300px;
+}
+
+.ck.ck-content.ck-focused {
+    box-shadow: none!important;
+    border-top: 1px solid rgb(204, 206, 209)!important;
+}
+
+.ck.ck-toolbar {
+    border-top: 1px solid #e879f9!important;
+    border-left: 1px solid #e879f9!important;
+    border-right: 1px solid #e879f9!important;
+    border-radius: 0.75rem 0.75rem 0 0!important;
+}

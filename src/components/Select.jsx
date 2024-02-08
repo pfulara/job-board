@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Select = React.forwardRef(function Select(
+const CustomSelect = React.forwardRef(function CustomSelect(
   { onChange, onBlur, name, label, items },
   ref
 ) {
@@ -12,7 +12,7 @@ const Select = React.forwardRef(function Select(
         onBlur={onBlur}
         onChange={onChange}
         ref={ref}
-        className={`block w-full px-4 py-2 font-normal border border-primary-light rounded-xl focus-visible:outline-primary`}
+        className={`block w-full px-4 py-2 font-normal border border-primary-light rounded-xl outline-none focus-visible:shadow-select`}
       >
         {items?.map((item) => (
           <option
@@ -27,4 +27,4 @@ const Select = React.forwardRef(function Select(
   );
 });
 
-export default Select;
+export default CustomSelect;
