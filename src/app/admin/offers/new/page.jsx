@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '@/components/Button';
@@ -11,6 +12,7 @@ import locations from '@/utils/locations';
 import Textarea from '@/components/Textarea';
 
 export default function NewOffer() {
+  const [pending, setPending] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,7 +22,22 @@ export default function NewOffer() {
     getValues,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    setPending(true);
+    const res = await fetch('/api/offers/new', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      console.log(res.body);
+    } else {
+      setPending(false);
+    }
+  };
 
   return (
     <div className='p-4'>
@@ -30,10 +47,6 @@ export default function NewOffer() {
           error={errors.title}
           {...register('title', {
             required: 'This field is required',
-            pattern: {
-              value: /^[A-Za-z]+$/i,
-              message: "This field doesn't match",
-            },
           })}
         />
         <Select
@@ -75,7 +88,7 @@ export default function NewOffer() {
           })}
           ref={null}
         />
-        <Button label='Save' />
+        <Button loading={pending} label='Save' />
       </form>
     </div>
   );

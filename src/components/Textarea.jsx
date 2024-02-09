@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -17,9 +16,8 @@ const Textarea = ({
         {label}
       </label>
       <CKEditor
-        className='border-primary-light rounded-xl outline-none'
         editor={ClassicEditor}
-        data={value}
+        value={value}
         onChange={(event, editor) => {
           setValue(name, editor.getData());
           clearErrors(name);
