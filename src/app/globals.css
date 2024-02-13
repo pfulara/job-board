@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
 select {
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
