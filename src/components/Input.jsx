@@ -1,14 +1,25 @@
 import React from 'react';
 
 const Input = React.forwardRef(function Input(
-  { onChange, onBlur, name, label, error },
+  {
+    onChange,
+    onBlur,
+    name,
+    label,
+    error,
+    labelColor = 'text-dark',
+    type = 'text',
+  },
   ref
 ) {
   return (
-    <label className='mb-4 block font-bold text-sm text-text-dark'>
+    <label
+      className={`mb-4 block font-bold text-sm text-${labelColor}`}
+    >
       {label}
       <input
-        className={`py-2 px-4 block w-full border font-normal rounded-xl outline-none ${
+        type={type}
+        className={`py-2 px-4 block w-full border font-normal rounded-xl outline-none text-text-dark ${
           error ? 'border-error' : 'border-primary-light'
         } ${
           error

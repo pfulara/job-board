@@ -1,7 +1,5 @@
-import { Inter } from 'next/font/google';
+import NotificationProvider from '@/providers/NotificationProvider';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: {
@@ -15,7 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className='min-h-screen bg-secondary-dark text-text-dark'>
-        {children}
+        <NotificationProvider>
+          {children}
+        </NotificationProvider>
       </body>
     </html>
   );

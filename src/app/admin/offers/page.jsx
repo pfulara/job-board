@@ -1,27 +1,17 @@
-import OfferCard from './OfferCard';
+'use server';
+import { Suspense } from 'react';
+import Offers from './Offers';
+import Loader from '@/app/loader';
 
-async function getOffers() {
-  const res = await fetch(`${process.env.URL}/api/offers`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-export default async function Offers() {
-  const offers = await getOffers();
+export default async function OffersPage() {
   return (
-    <div className='p-4'>
+    <div>
       <h2 className='mb-4 pb-4 border-b-2 border-text'>
         My Offers
       </h2>
-      <div>
-        {offers.map((offer) => (
-          <OfferCard key={offer.id} offer={offer} />
-        ))}
-      </div>
+      <Suspense fallback={<Loader />}>
+        <Offers />
+      </Suspense>
     </div>
   );
 }
