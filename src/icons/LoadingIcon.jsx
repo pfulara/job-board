@@ -1,7 +1,15 @@
-import React from 'react';
-
 export default function LoadingIcon() {
   return (
-    <div className='rounded-xl w-10 h-10 border-2 border-primary animate-spin absolute duration-300 ease'></div>
+    <>
+      <div className='absolute rounded-xl border-primary loader'></div>
+      <div
+        className='absolute rounded-lg border-primary loader'
+        style={{
+          animationDelay: '0.75s',
+          height: '1.5rem',
+          width: '1.5rem',
+        }}
+      ></div>
+    </>
   );
 }

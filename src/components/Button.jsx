@@ -1,9 +1,9 @@
 'use client';
-import LoadingIcon from '@/icons/LoadingIcon';
 
 export default function Button({
   color = 'primary',
   label,
+  fullWidth = false,
   onClick = () => null,
 }) {
   return (
@@ -12,7 +12,8 @@ export default function Button({
         color === 'primary'
           ? `border-primary text-primary bg-secondary hover:bg-primary-dark hover:text-secondary hover:border-secondary`
           : `border-secondary text-secondary bg-primary-dark hover:bg-secondary hover:text-primary-dark hover:border-primary-dark`
-      }`}
+      }
+      ${fullWidth ? 'w-full' : ''}`}
       onClick={onClick}
     >
       {label}
