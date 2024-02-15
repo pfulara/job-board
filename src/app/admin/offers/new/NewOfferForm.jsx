@@ -1,5 +1,8 @@
 'use client';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useContext } from 'react';
+import { NotificationContext } from '@/providers/NotificationProvider';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -12,6 +15,9 @@ import Textarea from '@/components/Textarea';
 import Form from '@/components/Form';
 
 export default function NewOfferForm() {
+  const { setContext } = useContext(NotificationContext);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -22,17 +28,23 @@ export default function NewOfferForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const res = await fetch('/api/offers/new', {
+    const res = await fetch('/api/admin/offers/new', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(data),
     });
+    const response = await res.json();
 
     if (!res.ok) {
-      throw new Error('Submitting error');
+      setContext({
+        status: 'error',
+        message: response.message,
+      });
+      return;
     }
+    router.push(`/admin/offers/${response.id}`);
   };
 
   return (

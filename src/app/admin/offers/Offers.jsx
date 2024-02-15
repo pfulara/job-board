@@ -1,7 +1,9 @@
 import OfferCard from './OfferCard';
 
 async function getOffers() {
-  const res = await fetch(`${process.env.URL}/api/offers`);
+  const res = await fetch(
+    `${process.env.URL}/api/admin/offers`
+  );
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

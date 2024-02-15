@@ -18,6 +18,7 @@ export default async function SingleOffer({ params }) {
   const { offerId } = params;
   const offer = await getOffer(offerId);
   const {
+    id,
     title,
     description,
     skills,
@@ -26,7 +27,7 @@ export default async function SingleOffer({ params }) {
     salary,
   } = offer;
 
-  if (!offer.id) notFound();
+  if (!id) notFound();
   return (
     <div className='grid grid-cols-1 gap-4 lg:grid-cols-5'>
       <div className='bg-secondary-light shadow-md p-4 lg:mb-4 rounded-lg'>
