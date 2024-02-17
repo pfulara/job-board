@@ -1,4 +1,4 @@
-import NotificationProvider from '@/providers/NotificationProvider';
+import Providers from '@/providers/Providers';
 import './globals.css';
 
 export const metadata = {
@@ -13,9 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className='min-h-screen bg-secondary-dark text-text-dark'>
-        <NotificationProvider>
-          {children}
-        </NotificationProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

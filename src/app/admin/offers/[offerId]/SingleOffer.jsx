@@ -5,7 +5,8 @@ import Menu from './Menu';
 
 async function getOffer(id) {
   const res = await fetch(
-    `${process.env.URL}/api/offers/${id}`
+    `${process.env.NEXTAUTH_URL}/api/offers/${id}`,
+    { cache: 'no-store' }
   );
 
   if (!res.ok) {
@@ -18,7 +19,7 @@ export default async function SingleOffer({ params }) {
   const { offerId } = params;
   const offer = await getOffer(offerId);
   const {
-    id,
+    _id,
     title,
     description,
     skills,
@@ -27,7 +28,7 @@ export default async function SingleOffer({ params }) {
     salary,
   } = offer;
 
-  if (!id) notFound();
+  if (!_id) notFound();
   return (
     <div className='grid grid-cols-1 gap-4 lg:grid-cols-5'>
       <div className='bg-secondary-light shadow-md p-4 lg:mb-4 rounded-lg'>
@@ -46,9 +47,9 @@ export default async function SingleOffer({ params }) {
               Locations
             </h3>
             <div className='grid grid-cols-1 lg:grid-cols-4'>
-              {locations.map((location) => {
+              {locations.map(({ label }) => {
                 const key = uuidv4();
-                return <p key={key}>{location}</p>;
+                return <p key={key}>{label}</p>;
               })}
             </div>
           </div>
@@ -66,9 +67,9 @@ export default async function SingleOffer({ params }) {
             Skills
           </h3>
           <div className='grid grid-cols-1 lg:grid-cols-4'>
-            {skills.map((skill) => {
+            {skills.map(({ label }) => {
               const key = uuidv4();
-              return <p key={key}>{skill}</p>;
+              return <p key={key}>{label}</p>;
             })}
           </div>
         </div>

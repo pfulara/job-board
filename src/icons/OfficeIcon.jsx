@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SkillsIcon({
+export default function OfficeIcon({
   color = 'text',
   width = '24px',
   height = '24px',
@@ -14,8 +14,7 @@ export default function SkillsIcon({
     >
       <path
         fill='currentColor'
-        fillRule='evenodd'
-        d='m9 17 3-2.94c-.39-.04-.68-.06-1-.06-2.67 0-8 1.34-8 4v2h9zm2-5c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4m4.47 8.5L12 17l1.4-1.41 2.07 2.08 5.13-5.17 1.4 1.41z'
+        d='M12 7V3H2v18h20V7zM6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm4 12H8v-2h2zm0-4H8v-2h2zm0-4H8V9h2zm0-4H8V5h2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8zm-2-8h-2v2h2zm0 4h-2v2h2z'
       ></path>
     </svg>
   );

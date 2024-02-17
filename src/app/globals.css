@@ -12,6 +12,11 @@ h3 {
   font-weight: bold;
 }
 
+h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 select {
   -moz-appearance:none; /* Firefox */
   -webkit-appearance:none; /* Safari and Chrome */
@@ -40,15 +45,15 @@ select {
 
 @keyframes grow {
   from {
-    transform: scaleY(1);
+    height: 0.5rem;
     background-color: #e879f9;
   }  
   50% {
-    transform: scaleY(4);
+    height: 2rem;
     background-color: #86198f;
   }
   to {
-    transform: scaleY(1);
+    height: 0.5rem;
     background-color: #e879f9;
   }
 }
@@ -58,6 +63,7 @@ select {
   height: 0.5rem;
   background-color: #e879f9;
   margin: 0.2rem;
+  border-radius: 0.4rem;
 
   animation-duration: 1.9s;
   animation-name: grow;

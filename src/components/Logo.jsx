@@ -1,9 +1,12 @@
-export default function Logo({ color = 'primary' }) {
+export default function Logo({
+  color = 'primary',
+  size = 'text-md',
+}) {
   return (
-    <h1
-      className={`font-bold size-4 text-center w-16 h-16 flex items-center text-${color}`}
+    <span
+      className={`font-bold ${size} text-center w-16 h-16 flex items-center text-${color}`}
     >
       Job Board!
-    </h1>
+    </span>
   );
 }

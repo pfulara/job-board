@@ -15,8 +15,8 @@ const MultiSelect = React.forwardRef(function MultiSelect(
   ref
 ) {
   return (
-    <label className='mb-4 block font-bold text-sm text-text-dark'>
-      {label}
+    <label className='mb-4 block text-sm text-text-dark'>
+      <span className='font-bold'>{label}</span>
       <CreatableSelect
         instanceId={useId()}
         classNames={{

@@ -7,7 +7,9 @@ export default function Header() {
     <header className='h-16 flex px-4 border-b border-primary'>
       <div>
         <Link href='/'>
-          <Logo />
+          <h1>
+            <Logo />
+          </h1>
         </Link>
       </div>
       <div className='w-full flex justify-end items-center'>

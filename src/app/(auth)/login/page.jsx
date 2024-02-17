@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { signIn } from 'next-auth/react';
-import { NotificationContext } from '@/providers/NotificationProvider';
 
+import { NotificationContext } from '@/providers/NotificationProvider';
 import Form from '@/components/Form';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
@@ -30,7 +30,7 @@ export default function LoginPage() {
     if (res.error) {
       setContext({
         status: 'error',
-        message: response.message,
+        message: 'Wrong email or password',
       });
       return;
     }

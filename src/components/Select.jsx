@@ -1,13 +1,21 @@
 import React from 'react';
 
 const CustomSelect = React.forwardRef(function CustomSelect(
-  { onChange, onBlur, name, label, items },
+  {
+    onChange,
+    onBlur,
+    name,
+    label,
+    items,
+    value = undefined,
+  },
   ref
 ) {
   return (
     <label className='mb-4 block font-bold text-sm text-text-dark'>
       {label}
       <select
+        defaultValue={value}
         name={name}
         onBlur={onBlur}
         onChange={onChange}

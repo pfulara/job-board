@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/utils/connection";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
+import { connectDB } from "@/utils/connection";
 import Company from "@/models/companyModel";
 
 async function login(credentials){
@@ -15,10 +15,10 @@ async function login(credentials){
     const company = await Company.findOne({ email })
     if (!company) return NextResponse.json({ message: "Wrong email or password" }, { status: 400 });
     
-    const isCorrect = bcrypt.compare(password, company.password);
+    const isCorrect = await bcrypt.compare(password, company.password);
     if (!isCorrect) return NextResponse.json({ message: "Wrong email or password" }, { status: 400 });
-
-    return company;
+    
+    return NextResponse.json(company);
   } catch (error) {
     return NextResponse.json({ message: "Server error, please try again later" }, { status: 400 });
   }
@@ -28,35 +28,39 @@ export const authOptions = {
   pages: {
     signIn: "/login"
   },
+  session: {
+    strategy: "jwt"
+  },
   providers: [
     CredentialsProvider({
       name: 'credentials',
       credentials: false,
       async authorize(credentials){
         try {
-          const company = await login(credentials)
-          return company;
-        } catch(error) {
-          console.log("Error " + error);
+          const res = await login(credentials);
+          const company = await res.json();
+          if(company._id) {
+            return company;
+          }
+          
           return null;
+        } catch(error) {
+          throw new Error('Something went wrong');
         }
       }
     })
   ],
   callbacks: {
-    async jwt({ token, company }){
-      if (company) {
-        token.companyName = company.companyName,
-        token.email = company.email,
-        token.id = company.id
+    async jwt({ token, user }){
+      if (user) {
+        token.id = user._id
       }
       return token;
     },
     async session({ session, token}){
       if (token) {
-        session.company.companyName = token.companyName,
-        session.company.email = token.email,
-        session.company.id = token.id
+        session.user.id = token.id
+        delete session.user.email; 
       }
       return session;
     }

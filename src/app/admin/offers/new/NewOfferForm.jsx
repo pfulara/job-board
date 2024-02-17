@@ -1,18 +1,20 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { NotificationContext } from '@/providers/NotificationProvider';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import MultiSelect from '@/components/MultiSelect';
+import Textarea from '@/components/Textarea';
+import Form from '@/components/Form';
 
 import categories from '@/utils/categories';
 import locations from '@/utils/locations';
-import Textarea from '@/components/Textarea';
-import Form from '@/components/Form';
+import contracts from '@/utils/contracts';
+import currencies from '@/utils/currencies';
 
 export default function NewOfferForm() {
   const { setContext } = useContext(NotificationContext);
@@ -25,7 +27,23 @@ export default function NewOfferForm() {
     setValue,
     clearErrors,
     getValues,
+    watch,
   } = useForm();
+
+  const [skills, setSkills] = useState(
+    categories.find(
+      (category) =>
+        category.id === watch('category') || 'js'
+    ).skills
+  );
+
+  watch((data) =>
+    setSkills(
+      categories.find(
+        (category) => category.id === data.category
+      ).skills
+    )
+  );
 
   const onSubmit = async (data) => {
     const res = await fetch('/api/admin/offers/new', {
@@ -37,6 +55,7 @@ export default function NewOfferForm() {
     });
     const response = await res.json();
 
+    console.log(res);
     if (!res.ok) {
       setContext({
         status: 'error',
@@ -44,6 +63,7 @@ export default function NewOfferForm() {
       });
       return;
     }
+
     router.push(`/admin/offers/${response.id}`);
   };
 
@@ -59,11 +79,6 @@ export default function NewOfferForm() {
           required: 'This field is required',
         })}
       />
-      <Select
-        label='Category'
-        items={categories}
-        {...register('category')}
-      />
       <MultiSelect
         label='Locations'
         items={locations?.map((item) => ({
@@ -77,16 +92,48 @@ export default function NewOfferForm() {
           required: 'This field is required',
         })}
       />
+      <Select
+        label='Category'
+        items={categories}
+        {...register('category')}
+      />
       <MultiSelect
         label='Skills'
         setValue={setValue}
         clearErrors={clearErrors}
         error={errors.skills}
+        items={skills?.map((item) => ({
+          value: item.id,
+          label: item.label,
+        }))}
         {...register('skills', {
           required: 'This field is required',
         })}
       />
-      <Input label='Salary' {...register('salary')} />
+      <div className='flex gap-4'>
+        <div className='flex'>
+          <div className='w-60'>
+            <Input
+              label='Salary'
+              type='number'
+              {...register('salary')}
+            />
+          </div>
+          <Select
+            label='Currency'
+            items={currencies}
+            {...register('currency')}
+          />
+        </div>
+        <div>
+          <Select
+            label='Contract type'
+            items={contracts}
+            {...register('contract')}
+          />
+        </div>
+      </div>
+
       <Textarea
         label='Description'
         value={getValues('description')}

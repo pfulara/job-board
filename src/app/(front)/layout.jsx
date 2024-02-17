@@ -5,7 +5,9 @@ export default function FrontLayout({ children }) {
   return (
     <>
       <Header />
-      <main className='pb-10'>{children}</main>
+      <main className='flex min-h-[calc(100vh-theme(height.28))] p-4'>
+        {children}
+      </main>
       <Footer />
     </>
   );

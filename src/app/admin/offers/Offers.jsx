@@ -1,8 +1,13 @@
-import OfferCard from './OfferCard';
+import NoOffers from '@/components/NoOffers';
+import OfferCard from '@/components/OfferCard';
+import Link from 'next/link';
 
 async function getOffers() {
   const res = await fetch(
-    `${process.env.URL}/api/admin/offers`
+    `${process.env.NEXTAUTH_URL}/api/admin/offers`,
+    {
+      cache: 'no-store',
+    }
   );
 
   if (!res.ok) {
@@ -16,9 +21,18 @@ export default async function Offers() {
   const offers = await getOffers();
   return (
     <div>
-      {offers.map((offer) => (
-        <OfferCard key={offer.id} offer={offer} />
-      ))}
+      {!offers.length ? (
+        <NoOffers />
+      ) : (
+        offers?.map((offer) => (
+          <Link
+            key={offer._id}
+            href={`/admin/offers/${offer._id}`}
+          >
+            <OfferCard offer={offer} />
+          </Link>
+        ))
+      )}
     </div>
   );
 }
