@@ -8,7 +8,7 @@ import categories from '@/utils/categories';
 export default function Breadcrumb({ offer }) {
   const router = useRouter();
   return (
-    <div className='flex gap-4 font-bold px-4 py-2 bg-text-light rounded-xl items-center mb-4 shadow-md'>
+    <div className='flex gap-4 font-bold px-4 py-2 bg-secondary-light rounded-xl items-center mb-4 shadow-md'>
       <button
         className='rounded-full border border-text-dark p-2'
         onClick={() => router.back()}

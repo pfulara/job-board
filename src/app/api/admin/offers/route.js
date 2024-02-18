@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  try {
+import { connectDB } from "@/utils/connection";
+import Offer from "@/models/offerModel";
+import { getToken } from "next-auth/jwt";
 
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    return NextResponse.json({});
+export async function POST(req) {
+  try {
+    await connectDB();
+
+    const token = await getToken({ req })
+    const offers = await Offer.find({ company: token.id });
+
+    return NextResponse.json(offers);
   } catch {
     return NextResponse.json({ message: 'Server Error, please try again later.' });
   }

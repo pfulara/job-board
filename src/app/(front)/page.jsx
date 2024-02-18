@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -7,8 +7,10 @@ import OfferCard from '@/components/OfferCard';
 import NoOffers from '@/components/NoOffers';
 import Filters from './_components/Filters';
 import LoadingIcon from '@/icons/LoadingIcon';
+import { NotificationContext } from '@/providers/NotificationProvider';
 
 export default function Home() {
+  const { setContext } = useContext(NotificationContext);
   const [offers, setOffers] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -26,10 +28,16 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (!data.ok) {
+          setContext({
+            status: 'error',
+            message: data.message,
+          });
+        }
         setOffers(data);
         setLoading(false);
       });
-  }, [searchParams]);
+  }, [searchParams, setContext]);
 
   return (
     <div className='w-full grid grid-cols-6 gap-4'>

@@ -32,8 +32,11 @@ const offerSchema = mongoose.Schema({
   contract: {
     type: String,
   },
+  logo: {
+    type: String,
+  },
   company: {
-    type: mongoose.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Company'
   }
 },

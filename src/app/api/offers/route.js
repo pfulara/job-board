@@ -12,10 +12,10 @@ export async function POST(req) {
     }
     delete query.location;
 
-    const offers = await Offer.find(query).populate({ path: 'company', select: 'companyName logo'});
-
+    const offers = await Offer.find({ ...query, status: "Active" }).populate({ path: 'company', select: 'companyName logo'});
+    
     return NextResponse.json(offers);
   } catch {
-    return NextResponse.json({ message: 'Server Error, please try again later.' });
+    return NextResponse.json({ ok: false, message: 'Server Error, please try again later.' });
   }
 }
