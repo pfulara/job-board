@@ -4,12 +4,16 @@ export default function Sidebar() {
   return (
     <div className='bg-primary-dark p-4 text-text-light'>
       <ul>
-        <li className='py-3 px-2 font-medium uppercase hover:translate-x-2 transition ease-in-out'>
-          <Link href='/admin/offers'>Offers</Link>
-        </li>
-        <li className='py-3 px-2 font-medium uppercase hover:translate-x-2 transition ease-in-out'>
-          <Link href='/admin/settings'>Settings</Link>
-        </li>
+        <Link href='/admin/offers'>
+          <li className='py-3 px-2 font-medium uppercase hover:translate-x-2 transition ease-in-out'>
+            Offers
+          </li>
+        </Link>
+        <Link href='/admin/settings'>
+          <li className='py-3 px-2 font-medium uppercase hover:translate-x-2 transition ease-in-out'>
+            Settings
+          </li>
+        </Link>
       </ul>
     </div>
   );

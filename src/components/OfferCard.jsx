@@ -22,15 +22,17 @@ export default function OfferCard({
   return (
     <div className='border border-text-light shadow-md mb-4 p-4 bg-secondary rounded-md hover:shadow-lg'>
       <div className='grid grid-cols-1 lg:grid-cols-8 gap-4 m-auto'>
-        <div>
-          {logo ? (
-            logo
-          ) : (
-            <div className='bg-secondary-dark rounded-xl px-4 w-fit'>
-              <Logo />
-            </div>
-          )}
-        </div>
+        {!admin ? (
+          <div>
+            {logo ? (
+              logo
+            ) : (
+              <div className='bg-secondary-dark rounded-xl px-4 w-fit'>
+                <Logo />
+              </div>
+            )}
+          </div>
+        ) : null}
         <div className='col-span-7'>
           <div className='grid grid-cols-1 lg:grid-cols-2'>
             <h3>{title}</h3>
