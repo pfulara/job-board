@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 import Logo from '@/components/Logo';
 import Button from '@/components/Button';
@@ -15,7 +17,7 @@ export default function Header() {
         <Link href='/admin/offers/new'>
           <Button label='Post an offer' color='secondary' />
         </Link>
-        Avatar
+        <Button onClick={signOut} label='Logout' />
       </div>
     </header>
   );

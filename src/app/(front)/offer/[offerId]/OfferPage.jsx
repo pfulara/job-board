@@ -9,6 +9,7 @@ import OfficeIcon from '@/icons/OfficeIcon';
 import Logo from '@/components/Logo';
 import MoneyIcon from '@/icons/MoneyIcon';
 import Loader from '@/app/loader';
+import Image from 'next/image';
 
 async function getOffer(id) {
   const res = await fetch(
@@ -37,8 +38,14 @@ export default async function OfferPage({ offerId }) {
           <div className='bg-primary-dark text-text-light rounded-xl shadow-md p-4 mb-4'>
             <div className='block lg:flex mb-4'>
               <div className='flex items-center justify-center mr-4'>
-                {offer.logo ? (
-                  offer.logo
+                {offer.company.logo ? (
+                  <Image
+                    src={offer.company.logo}
+                    alt={offer.company.companyName}
+                    width={100}
+                    height={100}
+                    className='rounded-xl'
+                  />
                 ) : (
                   <div className='bg-primary rounded-xl p-4'>
                     <Logo color='secondary' />

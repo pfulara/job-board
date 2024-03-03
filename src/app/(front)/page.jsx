@@ -22,7 +22,7 @@ export default function Home() {
       (value, key) => (params[key] = value)
     );
     fetch(`/api/offers`, {
-      cache: 'no-store',
+      cache: 'no-cache',
       method: 'POST',
       body: JSON.stringify(params),
     })

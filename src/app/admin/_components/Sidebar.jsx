@@ -9,9 +9,9 @@ export default function Sidebar() {
             Offers
           </li>
         </Link>
-        <Link href='/admin/settings'>
+        <Link href='/admin/account'>
           <li className='py-3 px-2 font-medium uppercase hover:translate-x-2 transition ease-in-out'>
-            Settings
+            Account
           </li>
         </Link>
       </ul>

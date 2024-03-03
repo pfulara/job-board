@@ -16,10 +16,9 @@ import locations from '@/utils/locations';
 import contracts from '@/utils/contracts';
 import currencies from '@/utils/currencies';
 
-export default function NewOfferForm() {
+export default function EditOffer({ offer }) {
   const { setContext } = useContext(NotificationContext);
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -28,7 +27,9 @@ export default function NewOfferForm() {
     clearErrors,
     getValues,
     watch,
-  } = useForm();
+  } = useForm({
+    defaultValues: offer,
+  });
 
   const [skills, setSkills] = useState(
     categories.find(
@@ -46,7 +47,7 @@ export default function NewOfferForm() {
   );
 
   const onSubmit = async (data) => {
-    const res = await fetch('/api/admin/offers/new', {
+    const res = await fetch('/api/admin/offers/save', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -54,7 +55,6 @@ export default function NewOfferForm() {
       body: JSON.stringify(data),
     });
     const response = await res.json();
-
     if (!res.ok) {
       setContext({
         status: 'error',
@@ -62,8 +62,10 @@ export default function NewOfferForm() {
       });
       return;
     }
-
-    router.push(`/admin/offers/${response.id}`);
+    setContext({
+      status: 'success',
+      message: 'Saved successfully',
+    });
   };
 
   return (
@@ -71,6 +73,7 @@ export default function NewOfferForm() {
       action={handleSubmit(onSubmit)}
       isSubmitting={isSubmitting}
     >
+      <h2>Edit offer {offer.title}</h2>
       <Input
         label='Title'
         error={errors.title}
@@ -84,6 +87,7 @@ export default function NewOfferForm() {
           value: item,
           label: item,
         }))}
+        values={getValues('locations')}
         setValue={setValue}
         clearErrors={clearErrors}
         error={errors.locations}
@@ -99,6 +103,7 @@ export default function NewOfferForm() {
       <MultiSelect
         label='Skills'
         setValue={setValue}
+        values={getValues('skills')}
         clearErrors={clearErrors}
         error={errors.skills}
         items={skills?.map((item) => ({
@@ -144,7 +149,17 @@ export default function NewOfferForm() {
         })}
         ref={null}
       />
-      <Button label='Save' />
+      <div className='flex gap-4'>
+        <Button label='Save' />
+        <Button
+          type='reset'
+          color='secondary'
+          label='Cancel'
+          onClick={() =>
+            router.push(`/admin/offers/${offer._id}`)
+          }
+        />
+      </div>
     </Form>
   );
 }

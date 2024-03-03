@@ -1,33 +1,72 @@
 'use client';
-import Button from '@/components/Button';
-import LoadingIcon from '@/icons/LoadingIcon';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import Button from '@/components/Button';
+import LoadingIcon from '@/icons/LoadingIcon';
 
 export default function Menu({ offerId, status }) {
   const [pending, setPending] = useState(false);
+  const router = useRouter();
 
   const handlePublish = async () => {
     setPending(true);
-    await new Promise((resolve) =>
-      setTimeout(resolve, 3000)
+    const res = await fetch(
+      `/api/admin/offers/change-status`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          offerId,
+          status: 'Active',
+        }),
+      }
     );
+
+    if (res.ok) {
+      router.refresh();
+    }
     setPending(false);
   };
+
   const handleDraft = async () => {
     setPending(true);
-    await new Promise((resolve) =>
-      setTimeout(resolve, 3000)
+    const res = await fetch(
+      `/api/admin/offers/change-status`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          offerId,
+          status: 'Draft',
+        }),
+      }
     );
+
+    if (res.ok) {
+      router.refresh();
+    }
     setPending(false);
   };
+
   const handleCancel = async () => {
     setPending(true);
-    await new Promise((resolve) =>
-      setTimeout(resolve, 3000)
+    const res = await fetch(
+      `/api/admin/offers/change-status`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          offerId,
+          status: 'Cancelled',
+        }),
+      }
     );
+
+    if (res.ok) {
+      router.refresh();
+    }
     setPending(false);
   };
+
   return (
     <>
       <div>

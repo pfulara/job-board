@@ -11,6 +11,7 @@ const MultiSelect = React.forwardRef(function MultiSelect(
     error,
     setValue,
     clearErrors,
+    values = [],
   },
   ref
 ) {
@@ -18,6 +19,7 @@ const MultiSelect = React.forwardRef(function MultiSelect(
     <label className='mb-4 block text-sm text-text-dark'>
       <span className='font-bold'>{label}</span>
       <CreatableSelect
+        defaultValue={values}
         instanceId={useId()}
         classNames={{
           control: ({ menuIsOpen }) => [

@@ -1,23 +1,9 @@
-import StatusDot from '@/components/StatusDot';
-import { notFound } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+
 import Menu from './Menu';
+import StatusDot from '@/components/StatusDot';
 
-async function getOffer(id) {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/offers/${id}`,
-    { cache: 'no-store' }
-  );
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-export default async function SingleOffer({ params }) {
-  const { offerId } = params;
-  const offer = await getOffer(offerId);
+export default async function SingleOffer({ offer }) {
   const {
     _id,
     title,
@@ -28,11 +14,10 @@ export default async function SingleOffer({ params }) {
     salary,
   } = offer;
 
-  if (!_id) notFound();
   return (
     <div className='grid grid-cols-1 gap-4 lg:grid-cols-5'>
       <div className='bg-secondary-light shadow-md p-4 lg:mb-4 rounded-lg'>
-        <Menu offerId={offerId} status={status} />
+        <Menu offerId={_id} status={status} />
       </div>
       <div className='lg:col-span-4'>
         <div className='bg-secondary-light shadow-md p-4 mb-4 rounded-lg'>

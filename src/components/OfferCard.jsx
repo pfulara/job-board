@@ -3,6 +3,7 @@ import LocationIcon from '@/icons/LocationIcon';
 import SkillsIcon from '@/icons/SkillsIcon';
 import OfficeIcon from '@/icons/OfficeIcon';
 import Logo from './Logo';
+import Image from 'next/image';
 
 export default function OfferCard({
   offer,
@@ -16,16 +17,20 @@ export default function OfferCard({
     salary,
     company,
     currency,
-    logo,
   } = offer;
 
   return (
     <div className='border border-text-light shadow-md mb-4 p-4 bg-secondary rounded-md hover:shadow-lg'>
-      <div className='grid grid-cols-1 lg:grid-cols-8 gap-4 m-auto'>
+      <div className='block lg:flex gap-4 m-auto'>
         {!admin ? (
           <div>
-            {logo ? (
-              logo
+            {company.logo ? (
+              <Image
+                src={company.logo}
+                alt={company.companyName}
+                width={70}
+                height={70}
+              />
             ) : (
               <div className='bg-secondary-dark rounded-xl px-4 w-fit'>
                 <Logo />
@@ -33,7 +38,7 @@ export default function OfferCard({
             )}
           </div>
         ) : null}
-        <div className='col-span-7'>
+        <div className='w-full'>
           <div className='grid grid-cols-1 lg:grid-cols-2'>
             <h3>{title}</h3>
             <div className='flex lg:justify-end font-bold text-lg'>
