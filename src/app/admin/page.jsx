@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function Dashboard() {
-  return <div className='p-4'>Dashboard</div>;
+  return redirect('/admin/offers');
 }

@@ -5,7 +5,7 @@ export default function DashboardLayout({ children }) {
   return (
     <>
       <Header />
-      <main className='grid grid-cols-6 md:min-h-[calc(100vh-theme(height.16))]'>
+      <main className='lg:grid grid-cols-6 lg:min-h-[calc(100vh-theme(height.16))]'>
         <Sidebar />
         <div className='col-span-5 relative p-4'>
           {children}

@@ -48,7 +48,7 @@ export default function Menu({ offerId, status }) {
     setPending(false);
   };
 
-  const handleCancel = async () => {
+  const handleClose = async () => {
     setPending(true);
     const res = await fetch(
       `/api/admin/offers/change-status`,
@@ -56,7 +56,7 @@ export default function Menu({ offerId, status }) {
         method: 'POST',
         body: JSON.stringify({
           offerId,
-          status: 'Cancelled',
+          status: 'Closed',
         }),
       }
     );
@@ -70,6 +70,15 @@ export default function Menu({ offerId, status }) {
   return (
     <>
       <div>
+        <div className='mb-10'>
+          <Link href={`/admin/candidates/${offerId}`}>
+            <Button
+              fullWidth
+              color='secondary'
+              label='Candidates'
+            />
+          </Link>
+        </div>
         <div className='mb-4'>
           <Link href={`/admin/offers/${offerId}/edit`}>
             <Button fullWidth label='Edit offer' />
@@ -92,8 +101,8 @@ export default function Menu({ offerId, status }) {
         </div>
         <Button
           fullWidth
-          label='Cancel offer'
-          onClick={handleCancel}
+          label='Close offer'
+          onClick={handleClose}
         />
       </div>
       {pending && (

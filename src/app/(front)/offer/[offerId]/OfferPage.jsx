@@ -10,6 +10,7 @@ import Logo from '@/components/Logo';
 import MoneyIcon from '@/icons/MoneyIcon';
 import Loader from '@/app/loader';
 import Image from 'next/image';
+import ApplyForm from './ApplyForm';
 
 async function getOffer(id) {
   const res = await fetch(
@@ -97,7 +98,7 @@ export default async function OfferPage({ offerId }) {
                 `${skill.label}${index + 1 < offer.skills.length ? ' | ' : ''}`
             )}
           </div>
-          <div className='bg-secondary-light rounded-xl shadow-md p-4'>
+          <div className='bg-secondary-light rounded-xl shadow-md p-4 mb-4'>
             <h3 className='mb-4 pb-2 border-b border-text'>
               Description
             </h3>
@@ -106,6 +107,12 @@ export default async function OfferPage({ offerId }) {
               dangerouslySetInnerHTML={{
                 __html: offer.description,
               }}
+            />
+          </div>
+          <div className='bg-secondary-light rounded-xl shadow-md p-4'>
+            <ApplyForm
+              offer={offer._id}
+              company={offer.company._id}
             />
           </div>
         </div>

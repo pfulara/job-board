@@ -40,7 +40,7 @@ export default function LoginPage() {
   return (
     <>
       <Form
-        onSubmit={handleSubmit(onSubmit)}
+        action={handleSubmit(onSubmit)}
         isSubmitting={isSubmitting}
       >
         <Input

@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <div className='w-full grid grid-cols-6 gap-4'>
-      <div className='hidden lg:block lg:col-span-2'>
+      <div className='block col-span-6 lg:col-span-2'>
         <Filters />
       </div>
       <div className='col-span-6 lg:col-span-4 lg:h-[calc(100vh-theme(height.32))] lg:overflow-y-scroll lg:pr-4'>

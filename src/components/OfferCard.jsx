@@ -42,7 +42,9 @@ export default function OfferCard({
           <div className='grid grid-cols-1 lg:grid-cols-2'>
             <h3>{title}</h3>
             <div className='flex lg:justify-end font-bold text-lg'>
-              {salary} {currency}
+              {salary
+                ? `${salary} ${currency}`
+                : 'Undisclosed salary'}
             </div>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3'>

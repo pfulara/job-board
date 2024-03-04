@@ -69,3 +69,7 @@ select {
   animation-name: grow;
   animation-iteration-count: infinite;
 }
+
+textarea {
+  resize: none;
+}

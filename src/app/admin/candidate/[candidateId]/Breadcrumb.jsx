@@ -3,12 +3,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import BackIcon from '@/icons/BackIcon';
-import categories from '@/utils/categories';
 
 export default function Breadcrumb({ offer }) {
   const router = useRouter();
   return (
-    <div className='flex gap-4 font-bold px-4 py-2 bg-secondary-light rounded-xl items-center mb-4 shadow-md'>
+    <div className='flex gap-4 font-bold items-center'>
       <button
         className='rounded-full border border-text-dark p-2'
         onClick={() => router.back()}
@@ -19,13 +18,9 @@ export default function Breadcrumb({ offer }) {
           height='16px'
         />
       </button>
-      <Link href='/'>All offers</Link>
-      <Link href={`/?category=${offer.category}`}>
-        {
-          categories.find(
-            (category) => category.id === offer.category
-          )?.label
-        }
+      <Link href='/admin/candidates'>All candidates</Link>
+      <Link href={`/admin/candidates/${offer._id}`}>
+        {offer.title} candidates
       </Link>
     </div>
   );

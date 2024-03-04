@@ -42,7 +42,7 @@ export default function RegisterPage() {
   return (
     <>
       <Form
-        onSubmit={handleSubmit(onSubmit)}
+        action={handleSubmit(onSubmit)}
         isSubmitting={isSubmitting}
       >
         <Input

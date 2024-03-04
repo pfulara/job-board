@@ -15,7 +15,7 @@ export default async function SingleOffer({ offer }) {
   } = offer;
 
   return (
-    <div className='grid grid-cols-1 gap-4 lg:grid-cols-5'>
+    <div className='flex flex-col-reverse lg:grid grid-cols-1 gap-4 lg:grid-cols-5'>
       <div className='bg-secondary-light shadow-md p-4 lg:mb-4 rounded-lg'>
         <Menu offerId={_id} status={status} />
       </div>

@@ -8,8 +8,10 @@ export async function POST(req) {
   try {
     await connectDB();
 
-    const token = await getToken({ req })
-    const offers = await Offer.find({ company: token.id });
+    const token = await getToken({ req });
+    const body = await req.json();
+    const { select } = body;
+    const offers = await Offer.find({ company: token.id }).select(select);
 
     return NextResponse.json(offers);
   } catch {

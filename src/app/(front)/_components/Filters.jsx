@@ -31,7 +31,7 @@ export default function Filters() {
   };
 
   return (
-    <div className='bg-secondary rounded-xl p-4 h-full shadow-md'>
+    <div className='bg-secondary rounded-xl p-4 lg:h-full shadow-md'>
       <h4 className='text-center mb-4'>Filters</h4>
       <CustomSelect
         label='Location'

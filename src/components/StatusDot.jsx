@@ -6,7 +6,7 @@ export default function StatusDot({ status }) {
     case 'Active':
       color = 'bg-success';
       break;
-    case 'Cancelled':
+    case 'Closed':
       color = 'bg-error';
       break;
     default:

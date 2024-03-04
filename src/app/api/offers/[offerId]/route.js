@@ -7,7 +7,7 @@ export async function GET(request, { params }) {
     await connectDB();
 
     const { offerId } = params;
-    const offer = await Offer.findOne({_id: offerId}).populate({ path: 'company', select: '-password'});
+    const offer = await Offer.findOne({ _id: offerId }).populate({ path: 'company', select: '-password'});
     return NextResponse.json(offer);
   } catch {
     return NextResponse.json({ message: 'Server Error, please try again later.' });
