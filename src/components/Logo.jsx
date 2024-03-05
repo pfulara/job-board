@@ -4,7 +4,7 @@ export default function Logo({
 }) {
   return (
     <span
-      className={`font-bold ${size} text-center w-16 h-16 flex items-center text-${color}`}
+      className={`font-bold ${size} text-center w-12 h-12 flex items-center text-${color}`}
     >
       Job Board!
     </span>

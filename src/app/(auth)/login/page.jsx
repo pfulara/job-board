@@ -18,7 +18,12 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: 'demo@jobboard.com',
+      password: 'demojobboard',
+    },
+  });
 
   const onSubmit = async (data) => {
     const res = await signIn('credentials', {

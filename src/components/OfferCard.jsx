@@ -30,9 +30,10 @@ export default function OfferCard({
                 alt={company.companyName}
                 width={70}
                 height={70}
+                className='rounded-xl'
               />
             ) : (
-              <div className='bg-secondary-dark rounded-xl px-4 w-fit'>
+              <div className='bg-secondary-dark rounded-xl w-16 h-16 flex items-center justify-center'>
                 <Logo />
               </div>
             )}
