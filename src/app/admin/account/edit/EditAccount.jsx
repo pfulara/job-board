@@ -22,6 +22,7 @@ const Textarea = dynamic(
 );
 
 export default function EditAccount({ company }) {
+  console.log(company);
   const { setContext } = useContext(NotificationContext);
   const router = useRouter();
   const {
