@@ -4,12 +4,11 @@ import { connectDB } from "@/utils/connection";
 import Company from "@/models/companyModel";
 import { getToken } from "next-auth/jwt";
 
-export async function GET(req) {
+export async function POST(req) {
   try {
     await connectDB();
 
     const token = await getToken({ req });
-    console.log(token);
     const company = await Company.findOne({ _id: token.id }).select('-password');
 
     return NextResponse.json(company);

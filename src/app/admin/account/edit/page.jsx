@@ -15,6 +15,8 @@ const getCompany = async () => {
     `${process.env.NEXTAUTH_URL}/api/admin/company`,
     {
       cache: 'no-cache',
+      method: 'POST',
+      body: JSON.stringify({}),
       headers: {
         Authorization: `Bearer ${token}`,
       },

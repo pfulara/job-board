@@ -7,7 +7,7 @@ import { getToken } from "next-auth/jwt";
 export async function POST(req) {
   try {
     await connectDB();
-
+ 
     const token = await getToken({ req });
     const body = await req.json();
     const { select } = body;
