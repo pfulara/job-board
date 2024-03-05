@@ -10,7 +10,7 @@ async function getOffers() {
     .find(
       (token) =>
         token.name ===
-        '__Secure-__Secure-next-auth.session-token'
+        '__Secure-process.env.VERCEL_COOKIES_TOKEN'
     )?.value;
   const res = await fetch(
     `${process.env.NEXTAUTH_URL}/api/admin/offers`,

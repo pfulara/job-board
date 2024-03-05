@@ -8,7 +8,7 @@ const getCompany = async () => {
     .getAll()
     .find(
       (token) =>
-        token.name === '__Secure-next-auth.session-token'
+        token.name === 'process.env.VERCEL_COOKIES_TOKEN'
     ).value;
 
   const res = await fetch(
