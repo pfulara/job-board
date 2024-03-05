@@ -8,13 +8,24 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import MultiSelect from '@/components/MultiSelect';
-import Textarea from '@/components/Textarea';
 import Form from '@/components/Form';
 
 import categories from '@/utils/categories';
 import locations from '@/utils/locations';
 import contracts from '@/utils/contracts';
 import currencies from '@/utils/currencies';
+
+const Textarea = dynamic(
+  () => {
+    return import('@/components/Textarea');
+  },
+  {
+    loading: () => (
+      <div className='text-center my-8'>Loading...</div>
+    ),
+    ssr: false,
+  }
+);
 
 export default function NewOfferForm() {
   const { setContext } = useContext(NotificationContext);

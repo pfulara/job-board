@@ -1,5 +1,3 @@
-'use server';
-
 export default async function Loader() {
   return (
     <div className='flex h-full w-full items-center justify-center mt-16'>

@@ -6,8 +6,19 @@ import { NotificationContext } from '@/providers/NotificationProvider';
 import Form from '@/components/Form';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
-import Textarea from '@/components/Textarea';
 import { useRouter } from 'next/navigation';
+
+const Textarea = dynamic(
+  () => {
+    return import('@/components/Textarea');
+  },
+  {
+    loading: () => (
+      <div className='text-center my-8'>Loading...</div>
+    ),
+    ssr: false,
+  }
+);
 
 export default function EditAccount({ company }) {
   const { setContext } = useContext(NotificationContext);
