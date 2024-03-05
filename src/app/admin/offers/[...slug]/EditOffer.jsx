@@ -1,9 +1,9 @@
 'use client';
+import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
 import { NotificationContext } from '@/providers/NotificationProvider';
-import dynamic from 'next/dynamic';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -15,7 +15,6 @@ import categories from '@/utils/categories';
 import locations from '@/utils/locations';
 import contracts from '@/utils/contracts';
 import currencies from '@/utils/currencies';
-import Loader from '@/app/loader';
 
 const Textarea = dynamic(
   () => {
