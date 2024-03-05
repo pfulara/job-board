@@ -7,7 +7,8 @@ const getCompany = async () => {
   const token = cookies()
     .getAll()
     .find(
-      (token) => token.name === 'next-auth.session-token'
+      (token) =>
+        token.name === '__Secure-next-auth.session-token'
     ).value;
 
   const res = await fetch(

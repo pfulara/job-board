@@ -8,8 +8,10 @@ async function getOffers() {
   const token = cookies()
     .getAll()
     .find(
-      (token) => token.name === 'next-auth.session-token'
-    ).value;
+      (token) =>
+        token.name ===
+        '__Secure-__Secure-next-auth.session-token'
+    )?.value;
   const res = await fetch(
     `${process.env.NEXTAUTH_URL}/api/admin/offers`,
     {
