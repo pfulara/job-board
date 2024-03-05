@@ -9,6 +9,7 @@ export async function GET(req) {
     await connectDB();
 
     const token = await getToken({ req });
+    console.log(token);
     const company = await Company.findOne({ _id: token.id }).select('-password');
 
     return NextResponse.json(company);
